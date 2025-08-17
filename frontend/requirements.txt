@@ -1,0 +1,6 @@
+
+# Framework da Interface do Utilizador
+streamlit
+
+# Cliente HTTP para comunicar com o Backend
+requests

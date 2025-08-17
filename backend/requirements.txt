@@ -1,0 +1,27 @@
+# ----------------------------------------------------
+# Conteúdo para o arquivo: backend/requirements.txt
+# ----------------------------------------------------
+
+# Framework da API e Servidor
+fastapi
+uvicorn[standard]
+pydantic
+
+# Framework do Agente e Memória
+langgraph[redis]
+langchain
+langchain_openai
+openai
+python-dotenv
+
+# Ferramentas de Dados e Busca
+duckdb
+pandas
+google-search-results
+
+# Ferramentas de RAG (Ingestão e Armazenamento)
+pypdf
+chromadb
+tiktoken
+pdf2image
+Pillow

@@ -1,0 +1,42 @@
+# docker-compose.yml
+version: '3.8'
+
+# Define os serviços (contêineres) que compõem a nossa aplicação
+services:
+  # Serviço de Memória para a Conversa
+  redis:
+    image: redis:alpine
+    container_name: agente-redis
+    ports:
+      - "6379:6379" # Mapeia a porta do contêiner para a sua máquina local
+    volumes:
+      - redis_data:/data # Garante que os dados do Redis persistam mesmo se o contêiner for recriado
+
+  # Serviço do Backend (O Cérebro)
+  backend:
+    build: ./backend # Instrui o Compose a construir a imagem usando o Dockerfile na pasta ./backend
+    container_name: agente-backend
+    env_file:
+      - .env # Carrega as variáveis de ambiente (API Keys) do arquivo .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app # Mapeia o código local para dentro do contêiner, permitindo live-reload
+    depends_on:
+      - redis # Garante que o serviço do Redis inicie antes do backend
+    command: uvicorn api.main:app_fastapi --host 0.0.0.0 --port 8000 --reload
+
+  # Serviço do Frontend (O Rosto)
+  frontend:
+    build: ./frontend # Instrui o Compose a construir a imagem usando o Dockerfile na pasta ./frontend
+    container_name: agente-frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend # Garante que o serviço do backend inicie antes do frontend
+
+# Define os volumes nomeados para persistência de dados
+volumes:
+  redis_data:
