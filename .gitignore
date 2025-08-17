@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+ENV/
+.env.*
+
+# Jupyter
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# Docker
+*.pid
+dist/
+build/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Others
+*.sqlite3
+*.db
+*.bak
+*.swp
+
+# Ignore files inside data and knowledge base (customize as needed)
+backend/core/vector_store/*
+!backend/core/vector_store/**/*.*/
+!backend/core/vector_store/**/*.md
+!backend/core/vector_store/**/*.txt
+!backend/core/vector_store/**/*.json
+!backend/core/vector_store/**/*.csv
