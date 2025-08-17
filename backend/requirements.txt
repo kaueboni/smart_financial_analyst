@@ -14,6 +14,7 @@ langchain_openai
 langchain_community
 openai
 python-dotenv
+redis
 
 # Ferramentas de Dados e Busca
 duckdb
